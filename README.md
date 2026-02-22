@@ -27,22 +27,22 @@ Zero external runtime dependencies. Uses only Node.js built-ins and ANSI escape 
 
 ## Installation
 
-\`\`\`bash
+```bash
 npm install fuzzbox
-\`\`\`
+```
 
 Or if you prefer the other one:
 
-\`\`\`bash
+```bash
 yarn add fuzzbox
 pnpm add fuzzbox
-\`\`\`
+```
 
 ## Usage
 
 ### Express.js
 
-\`\`\`typescript
+```typescript
 import express from 'express';
 import { fuzzboxExpress } from 'fuzzbox';
 
@@ -60,7 +60,7 @@ app.get('/api/users', (req, res) => {
 });
 
 app.listen(3000, () => console.log('Server running on :3000'));
-\`\`\`
+```
 
 Visit `http://localhost:3000/__fuzzbox` to open the live control panel.
 
@@ -68,7 +68,7 @@ Visit `http://localhost:3000/__fuzzbox` to open the live control panel.
 
 Create or modify `middleware.ts` in your project root:
 
-\`\`\`typescript
+```typescript
 // middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
@@ -93,13 +93,13 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: '/api/:path*',
 };
-\`\`\`
+```
 
 ### Next.js (Pages Router / API Routes)
 
 Wrap individual API route handlers:
 
-\`\`\`typescript
+```typescript
 // pages/api/users.ts
 import { fuzzboxApiRoute } from 'fuzzbox';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -116,13 +116,13 @@ export default fuzzboxApiRoute(handler, {
     latency: { enabled: true, minMs: 200, maxMs: 2000 },
   },
 });
-\`\`\`
+```
 
 ## Configuration
 
 All options are optional. Sane (chaotic) defaults are provided.
 
-\`\`\`typescript
+```typescript
 interface FuzzboxConfig {
   /** Probability (0-1) that any given request gets fuzzed. Default: 0.1 (10%) */
   probability?: number;
@@ -182,13 +182,13 @@ interface FuzzboxConfig {
     };
   };
 }
-\`\`\`
+```
 
 ## Examples
 
 ### Only fuzz payment endpoints with high error rates
 
-\`\`\`typescript
+```typescript
 app.use(fuzzboxExpress({
   probability: 0.5,
   includeRoutes: [/^\\/api\\/payments/],
@@ -197,11 +197,11 @@ app.use(fuzzboxExpress({
     latency: { enabled: false },
   },
 }));
-\`\`\`
+```
 
 ### Test aggressive body mutation on all 200 responses
 
-\`\`\`typescript
+```typescript
 app.use(fuzzboxExpress({
   probability: 0.3,
   behaviors: {
@@ -210,11 +210,11 @@ app.use(fuzzboxExpress({
     latency: { enabled: false },
   },
 }));
-\`\`\`
+```
 
 ### Simulate slow network conditions
 
-\`\`\`typescript
+```typescript
 app.use(fuzzboxExpress({
   probability: 0.8,
   behaviors: {
@@ -222,11 +222,11 @@ app.use(fuzzboxExpress({
     zombieMode: { enabled: true, bytesPerSecond: 5, probability: 0.2 },
   },
 }));
-\`\`\`
+```
 
 ## Live Dashboard
 
-The dashboard is served at `/__fuzzbox` by default (configurable via \`dashboardPath\`).
+The dashboard is served at `/__fuzzbox` by default (configurable via `dashboardPath`).
 
 Features:
 - Real-time stats: total requests, chaos injected, chaos rate percentage.
@@ -241,14 +241,14 @@ The dashboard is a single HTML file with embedded CSS and vanilla JavaScript. No
 
 Fuzzbox logs every chaos action with colorized ANSI output:
 
-\`\`\`
+```
 🎸 [Fuzzbox] Middleware initialized. Chaos is ready.
 🎸 [Fuzzbox] Injecting 1847ms latency to GET /api/users
 🎸 [Fuzzbox] 502 error injected to POST /api/orders
 🎸 [Fuzzbox] Body mutation enabled for GET /api/products
-\`\`\`
+```
 
-Set \`silent: true\` to disable logs, or provide a custom \`logger\` function.
+Set `silent: true` to disable logs, or provide a custom `logger` function.
 
 ## FAQ
 
@@ -284,7 +284,7 @@ Detailed guides and references:
 
 Run the test suite to verify core functionality:
 
-\`\`\`bash
+```bash
 # Run all tests
 node tests/core.test.js
 node tests/mutators.test.js
@@ -292,9 +292,9 @@ node tests/integration.test.js
 
 # Or run them all at once
 npm test
-\`\`\`
+```
 
-Tests use Node.js built-in \`assert\` module. Zero test dependencies.
+Tests use Node.js built-in `assert` module. Zero test dependencies.
 
 ## License
 
