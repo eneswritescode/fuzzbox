@@ -1,0 +1,24 @@
+# Source files (only ship compiled dist)
+src/
+tsconfig.json
+
+# Development
+.gitignore
+.npmignore
+*.test.ts
+*.spec.ts
+
+# IDE
+.vscode/
+.idea/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Misc
+*.md
+!README.md
+examples/
+docs/
