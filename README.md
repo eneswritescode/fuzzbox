@@ -1,6 +1,6 @@
 # 🎸 Fuzzbox
 
-Micro chaos engineering and API fuzzing middleware for Node.js (Express) and Next.js. Intentionally break things before your users do.
+Chaos engineering and API fuzzing middleware for Node.js (Express) and Next.js. Intentionally break things before your users do.
 
 Zero runtime dependencies. Just controlled mayhem.
 

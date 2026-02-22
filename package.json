@@ -1,7 +1,7 @@
 {
   "name": "fuzzbox",
   "version": "1.0.0",
-  "description": "Micro chaos engineering and API fuzzing middleware for Express and Next.js. Intentionally break things before your users do.",
+  "description": "Chaos engineering and API fuzzing middleware for Express and Next.js. Intentionally break things before your users do.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
